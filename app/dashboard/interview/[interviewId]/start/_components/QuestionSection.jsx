@@ -11,7 +11,7 @@ function QuestionSection({ mockQuest, activeQsIndex }) {
     }
   };
   return (
-    <div className="p-5 border rounded-lg  w-2/5 mt-14">
+    <div className="p-5 border rounded-lg  mt-14">
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
         {mockQuest &&
           mockQuest.map((question, index) => (
@@ -30,12 +30,12 @@ function QuestionSection({ mockQuest, activeQsIndex }) {
       </div>
 
       <h2 className="my-5 text-md md:text-lg">
-        {mockQuest && mockQuest[activeQsIndex].question}
+        {mockQuest && mockQuest[activeQsIndex] && mockQuest[activeQsIndex].question}
       </h2>
       <LucideVolume2
         className="cursor-pointer"
         onClick={() =>
-          textToSpeech(mockQuest && mockQuest[activeQsIndex].question)
+          textToSpeech(mockQuest && mockQuest[activeQsIndex] && mockQuest[activeQsIndex].question)
         }
       />
       <div className="border rounded-lg p-5 bg-blue-100 mt-20">

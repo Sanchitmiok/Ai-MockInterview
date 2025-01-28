@@ -5,11 +5,13 @@ import { eq } from "drizzle-orm";
 import React, { useEffect, useState } from "react";
 import QuestionSection from "./_components/QuestionSection";
 import RecordAnsSection from "./_components/RecordAnsSection";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 function page({ params }) {
   const [interviewdata, setInterviewdata] = useState(null);
-  const [mockQuest, setmockQuest] = useState(null);
-  const [activeQsIndex, setactiveQsIndex] = useState(0)
+  const [mockQuest, setmockQuest] = useState([]);
+  const [activeQsIndex, setactiveQsIndex] = useState(0);
   useEffect(() => {
     console.log(params.interviewId);
     GetInterviewDetails();
@@ -30,14 +32,38 @@ function page({ params }) {
       console.log(error);
     }
   };
-  return <div className="flex justify-between items-center gap-5">
-    {/* Question section */}
-    <QuestionSection mockQuest={mockQuest}
-    activeQsIndex={activeQsIndex} />
+  return (
+    <div className="">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+        {/* Question section */}
+        <QuestionSection mockQuest={mockQuest} activeQsIndex={activeQsIndex} />
 
-    {/* Recording section */}
-    <RecordAnsSection/>
-  </div>;
+        {/* Recording section */}
+        <RecordAnsSection
+          mockQuest={mockQuest}
+          activeQsIndex={activeQsIndex}
+          interviewdata={interviewdata}
+        />
+      </div>
+      <div className="flex justify-end gap-5">
+        {activeQsIndex > 0 && (
+          <Button onClick={() => setactiveQsIndex(activeQsIndex - 1)}>
+            Previous Question
+          </Button>
+        )}
+        {activeQsIndex < mockQuest.length - 1 && (
+          <Button onClick={() => setactiveQsIndex(activeQsIndex + 1)}>
+            Next Question
+          </Button>
+        )}
+        {activeQsIndex === mockQuest.length - 1 && (
+          <Link href={`/dashboard/interview/${params.interviewId}/feedback`}>
+            <Button>Submit</Button>
+          </Link>
+        )}
+      </div>
+    </div>
+  );
 }
 
 export default page;
