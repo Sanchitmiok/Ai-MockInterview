@@ -44,8 +44,6 @@ function AddNewInterview() {
         console.log(JSON.parse(MockJsonResponse))
         setjsonResponce(MockJsonResponse)
 
-        if(MockJsonResponse){
-
           const response = await db.insert(MockInterview).values({
             jobPosition:JobPosition,
             jobDesc:JobDesc,
@@ -56,10 +54,8 @@ function AddNewInterview() {
             mockId:uuidv4()
           }).returning({mockId:MockInterview.mockId}).execute()
   
-          console.log("Inserted ID",response)
-        }else{
-          console.log("Error in mock interview")
-        }
+          console.log("Inserted ID ",response)
+       
         if(response){
           setOpenDialog(false)
           router.push(`/dashboard/interview/${response[0].mockId}`)
@@ -77,8 +73,7 @@ function AddNewInterview() {
             <DialogDescription>
             <form onSubmit={onSubmit}>
              <div>
-             <h2>This will permanently delete your
-             account and remove your data from our servers.</h2>
+             <h2>Add Details about your job position/role,Job description and years of Experience.</h2>
              <div className="mt-5 my-2">
                 <label>Job Role / Job Position</label>
                 <Input placeholder="Ex. Web Developer" required
@@ -100,6 +95,7 @@ function AddNewInterview() {
                 <Button type='submit' disable={loading}>
                   {loading ? <>
                   <LoaderCircleIcon className='animate-spin' size={20} />
+                  Generating Interview Question
                   </> : 'Start the interview'}</Button>
               </div>
               </form>
