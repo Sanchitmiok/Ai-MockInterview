@@ -38,7 +38,7 @@ function FeedBack({ params }) {
     }
   };
   return (
-    <div className="p-10">
+    <div className="p-10 [&::-webkit-scrollbar]:hidden  [-ms-overflow-style:'none'] [scrollbar-width:'none'] overflow-y-scroll scrollbar-hide">
       {feedbackList?.length == 0 ? (
         <h2 className="font-bold text-xl text-red-500">No feedback available for this interview</h2>
       ) : (

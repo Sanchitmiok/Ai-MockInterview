@@ -9,37 +9,30 @@ function Header() {
   const path = usePathname();
   return (
     <div className="flex p-5 items-center justify-between bg-secondary shadow-md">
-      <Image src="/logo.svg" height={100} width={160} alt="logo" />
-      <ul className=" hidden md:flex gap-6">
-        <Link href={"/dashboard"}>
-          <li
-            className={`hover:text-primary cursor-pointer hover:font-bold transition-all ${
-              path == "/dashboard" && "text-primary font-bold"
+      <Link href={'/dashboard'}>
+      <Image src="/logo.svg" height={35} width={35} alt="logo" className=" hover:cursor-pointer" />
+      </Link>
+      <ul className="hidden md:flex md:justify-between gap-5 mx-2">
+        <li>
+          <Link
+            href="/dashboard"
+            className={`cursor-pointer transition-colors duration-200 hover:text-primary hover:font-bold ${
+              path === "/dashboard" && "text-primary font-bold"
             }`}
           >
             Dashboard
-          </li>
-        </Link>
-        <li
-          className={`hover:text-primary cursor-pointer hover:font-bold transition-all ${
-            path == "/upgrade" && "text-primary font-bold"
-          }`}
-        >
-          Updrade
+          </Link>
         </li>
-        <li
-          className={`hover:text-primary cursor-pointer hover:font-bold transition-all ${
-            path == "/questions" && "text-primary font-bold"
-          }`}
-        >
-          Questions
-        </li>
-        <li
-          className={`hover:text-primary cursor-pointer hover:font-bold transition-all ${
-            path == "/howitwork" && "text-primary font-bold"
-          }`}
-        >
-          How it Works
+
+        <li>
+          <Link
+            href="/howitworks"
+            className={`cursor-pointer transition-colors duration-200 hover:text-primary hover:font-bold ${
+              path === "/howitwork" && "text-primary font-bold"
+            }`}
+          >
+            How it Works
+          </Link>
         </li>
       </ul>
       <UserButton />
