@@ -20,7 +20,9 @@ function InterviewPage({ params }) {
     setwebCamEnabled(true);
   };
 
-  alert("Enable Web Camera and Microphone to start the interview");
+  useState(() => {
+    alert("Enable Web Camera and Microphone to start the interview");
+  }, []);
 
   const handleUserMediaError = (error) => {
     console.error("Webcam error:", error);
