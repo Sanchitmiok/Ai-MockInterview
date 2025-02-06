@@ -75,7 +75,7 @@ function InterviewPage({ params }) {
             <>
               <WebcamIcon className="h-72 w-full my-7 p-20 bg-secondary rounded-xl border" />
               <Button
-                variant="ghost"
+              
                 onClick={() => setwebCamEnabled(true)}
                 className="w-full"
               >
